@@ -16,7 +16,8 @@
 <style>
 *{
   /* font-family: 'Prompt', sans-serif; */
-  font-family: 'Roboto', sans-serif; 
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
 }
 </style>
 
