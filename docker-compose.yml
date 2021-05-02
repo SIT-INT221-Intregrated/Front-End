@@ -1,6 +1,10 @@
-services:
-    web:
-      build: .
-      image: ghcr.io/songkran-060/shoesweb:dev
-      ports:
-        - "8080:8080"
+version: '3'
+services: 
+    vueapp:
+        build: .
+        container_name: vue-app
+
+networks:
+    default:
+        external: 
+            name: intregrated-int221
