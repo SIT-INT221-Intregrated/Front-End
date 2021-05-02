@@ -1,34 +1,33 @@
 <template>
-  <div id="nav" class="flex flex-row md:shadow-lg">
-    <div class="w-20 bg-gray-300 text-center py-2">
-      <router-link to="/">Home</router-link>
+  <div id="nav" class="grid grid-cols-2 md:shadow-lg select-none">
+    <div class="flex flex-row">
+      <div class="w-20 bg-gray-300 text-center py-2">
+        <router-link to="/">Home</router-link>
+      </div>
+      <div class="w-20 bg-gray-200 text-center py-2">
+        <router-link to="/team">Team</router-link>
+      </div>
+      <div class="w-24 bg-gray-100 text-center py-2">
+        <router-link to="/product">Product</router-link>
+      </div>
     </div>
-    <div class="w-20 bg-gray-200 text-center py-2">
-      <router-link to="/team">Team</router-link>
+    <div class="place-self-end">
+      <div class="w-24 bg-gray-100 text-center py-2">
+        <router-link to="/add">AddProduct</router-link>
+      </div>
     </div>
-    <div class="w-24 bg-gray-100 text-center py-2">
-      <router-link to="/product">Product</router-link>
-    </div>
-    <!-- <div class="w-24 bg-gray-100 text-center py-2">
-      <router-link to="/add">AddProduct</router-link>
-    </div>
-    <div class="w-24 bg-gray-100 text-center py-2">
-      <router-link to="/edit">EditProduct</router-link>
-    </div> -->
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
-*{
+* {
   /* font-family: 'Prompt', sans-serif; */
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: bold;
 }
 </style>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
