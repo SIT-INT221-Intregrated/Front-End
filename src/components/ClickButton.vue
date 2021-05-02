@@ -1,5 +1,17 @@
 <template>
-  <div class="btn">
-    Hi
-  </div>
+  <button>
+    <slot>{{ label }}</slot>
+  </button>
 </template>
+
+<script>
+export default {
+  emits: ["btn-click"],
+  props: {
+    label: {
+      type: String,
+      required: true,
+    },
+  },
+};
+</script>

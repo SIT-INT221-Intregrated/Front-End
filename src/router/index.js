@@ -22,6 +22,22 @@ const routes = [
     // this generates a separate chunk (team.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "team" */ '../views/Team.vue')
+  },
+  {
+    path: '/add',
+    name: 'AddProduct',
+    // route level code-splitting
+    // this generates a separate chunk (team.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "team" */ '../views/AddProduct.vue')
+  },
+  {
+    path: '/edit',
+    name: 'EditProduct',
+    // route level code-splitting
+    // this generates a separate chunk (team.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "team" */ '../views/EditProduct.vue')
   }
 ]
 

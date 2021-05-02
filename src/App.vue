@@ -9,6 +9,12 @@
     <div class="w-24 bg-gray-100 text-center py-2">
       <router-link to="/product">Product</router-link>
     </div>
+    <!-- <div class="w-24 bg-gray-100 text-center py-2">
+      <router-link to="/add">AddProduct</router-link>
+    </div>
+    <div class="w-24 bg-gray-100 text-center py-2">
+      <router-link to="/edit">EditProduct</router-link>
+    </div> -->
   </div>
   <router-view/>
 </template>
