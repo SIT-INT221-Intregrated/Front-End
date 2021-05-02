@@ -3,8 +3,3 @@ services:
     vueapp:
         build: .
         container_name: vue-app
-
-networks:
-    default:
-        external: 
-            name: intregrated-int221
