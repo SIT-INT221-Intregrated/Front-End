@@ -1,12 +1,13 @@
-FROM node:alpine3.10 as build
-ENV NODE_VERSION 14.16.1
-WORKDIR /my-app/
-COPY package*.json /my-app/
+# build stage
+FROM node:lts-alpine as build-stage
+WORKDIR /app
+COPY package*.json ./
 RUN npm install
-COPY ./ .
+COPY . .
 RUN npm run build
 
-FROM nginx:1.19.10-alpine
-ADD nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /my-app/dist /usr/share/nginx/html/src/
-EXPOSE 8080
+# production stage
+FROM nginx:stable-alpine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
