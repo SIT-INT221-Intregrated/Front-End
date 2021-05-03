@@ -1,24 +1,27 @@
 <template>
-  <div class="flex">
-    <!-- <div>
-      <img
-        src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/c1a62c5b-36ae-4b5f-89d2-69e2a245815d/custom-nike-air-force-1-by-you.png"
-        class="w-60"
-      />
+  <div v-for="product in products" :key="product.productcode" class="">
+    <div>
+      <img src="" class="w-60" />
     </div>
     <div class="flex flex-col">
-      <div class="text-xl">Nike Air Force 1 Low By You</div>
-      <div class="text-gray-300 text-sm">Nike</div>
+      <div class="text-xl">{{ product.productname }}</div>
+      <div v-for="brand in product" :key="brand.brandid">
+        <div class="text-gray-300 text-sm">{{ brand.brandname }}</div>
+      </div>
       <div class="">
-        Description: From high-top to low-top. Live the legend of the Air Force
-        1, modernized for ultimate street style.
-        <span class="text-gray-300 text-xs">( Last Update: 28-01-21 )</span>
+        Description: {{ product.productdescription }}
+        <span class="text-gray-300 text-xs"
+          >( Last Update: {{ product.saleDate }} )</span
+        >
       </div>
-      <div> -->
-        <!-- Use v-for -->
-        <!-- <i class="material-icons">circle</i>
-      </div>
-      <div class="">Price: $4200</div>
+      <!-- <div v-for="brand in product" :key="brand.brandid">
+        <div v-for="color in brand" :key="color.colorId" class="">
+          <i class="material-icons flex" :style="{'color': color.hexcode}">circle</i>
+        </div>
+      </div> -->
+      <div class="">Price: ${{ product.price }}</div>
+
+      <!-- Button -->
       <div class="flex flex-row justify-end gap-8">
         <click-button
           class="ButtonEdit focus:outline-none bg-green-300 select-none"
@@ -26,21 +29,9 @@
         ></click-button>
         <click-button
           class="ButtonDelete focus:outline-none bg-red-300 select-none"
-          label="DELETE"
+          label="DELETE" @click="removeProduct(product.productcode)"
         ></click-button>
       </div>
-    </div> -->
-    <div v-for="b in brandList" :key="b.brandid">
-      <p>{{ b.brandid }}</p>
-      <p>{{ b.brandname }}</p>
-      <click-button
-          class="ButtonEdit focus:outline-none bg-green-300 select-none"
-          label="EDIT"
-        ></click-button>
-        <click-button
-          class="ButtonDelete focus:outline-none bg-red-300 select-none"
-          label="DELETE"
-        ></click-button>
     </div>
   </div>
 </template>
@@ -52,14 +43,21 @@ export default {
     ClickButton,
   },
   props: {
-    brandList: {
+    products: {
       type: Array,
       require: true,
-    }
+    },
   },
   data() {
     return {
+      url: "http://localhost:3000/products",
+    };
+  },
+  methods: {
+    async removeProduct(deleteId){
+      console.log("BaseCard: "+deleteId);
+      this.$emit("remove-product",deleteId);
     }
-  }
+  },
 };
 </script>
