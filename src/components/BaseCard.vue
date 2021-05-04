@@ -10,16 +10,13 @@
       </div>
       <div class="">
         Description: {{ product.productdescription }}
-        <span class="text-gray-300 text-xs"
-          >( Last Update: {{ product.saleDate }} )</span
-        >
+        <span class="text-gray-300 text-xs">( Last Update: {{ product.saledate }} )</span>
       </div>
-      <!-- <div v-for="brand in product" :key="brand.brandid">
-        <div v-for="color in brand" :key="color.colorId" class="">
-          <i class="material-icons flex" :style="{'color': color.hexcode}">circle</i>
-        </div>
-      </div> -->
-      <div class="">Price: ${{ product.price }}</div>
+      <div v-for="color in product.productcolors" :key="color.colorId" class="w-5 h-5">
+        <div class="select-none border-black border-2 w-5 h-5 rounded-full" 
+        :style="{'background-color': color.hexcode}"></div>
+      </div>
+      <div class="">Price: ฿{{ product.price }}</div>
 
       <!-- Button -->
       <div class="flex flex-row justify-end gap-8">
@@ -29,7 +26,8 @@
         ></click-button>
         <click-button
           class="ButtonDelete focus:outline-none bg-red-300 select-none"
-          label="DELETE" @click="removeProduct(product.productcode)"
+          label="DELETE"
+          @click="removeProduct(product.productcode)"
         ></click-button>
       </div>
     </div>
@@ -54,10 +52,10 @@ export default {
     };
   },
   methods: {
-    async removeProduct(deleteId){
-      console.log("BaseCard: "+deleteId);
-      this.$emit("remove-product",deleteId);
-    }
+    async removeProduct(deleteId) {
+      console.log("BaseCard: " + deleteId);
+      this.$emit("remove-product", deleteId);
+    },
   },
 };
 </script>
