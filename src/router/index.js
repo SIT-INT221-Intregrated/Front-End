@@ -18,11 +18,11 @@ const routes = [
 
     component: () => import('../views/Team.vue')
   },
-  // {
-  //   path: '/add',
-  //   name: 'AddProduct',
-  //   component: () => import('../views/AddProduct.vue')
-  // },
+  {
+    path: '/add',
+    name: 'AddProduct',
+    component: () => import('../views/AddProduct.vue')
+  },
   // {
   //   path: '/edit',
   //   name: 'EditProduct',
