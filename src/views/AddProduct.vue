@@ -35,7 +35,7 @@
       <select
         name="brand"
         id="brand"
-        class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-16"
+        class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-16 w-40"
       >
         <option class="hidden" value="Select">Select...</option>
         <option
@@ -64,11 +64,8 @@
           :value="color.hexcode"
           class="flex"
         >
-          <input type="checkbox" :value="color.hexcode" class=""/>&nbsp;
-          <div
-            class="select-none border-black border-2 w-5 h-5 rounded-full"
-            :style="{ 'background-color': color.hexcode }"
-          ></div>
+          <input type="checkbox" id="color" name="color" :value="color.colorid" class=""/>&nbsp;
+          <div class="select-none border-black border-2 w-5 h-5 rounded-full" :style="{ 'background-color': color.hexcode }"></div>
           &nbsp;{{ color.colorname }}
         </div>
       </div>
@@ -93,19 +90,91 @@ export default {
   },
   data() {
     return {
-      url: "http://localhost:3000/brands",
+      brandUrl: "http://localhost:3000/brands",
+      colorUrl: "http://localhost:3000/colors",
+      productUrl: "http://localhost:3000/products",
       brands: [],
       colors: [],
+      result: [],
+      name: '',
+      price: '',
+      des: '',
+      brand: '',
+      date: '',
+      image: '',
+      selectedColor: [],
+      invalidName: false,
+      invalidPrice: false,
+      invalidDes: false,
+      invalidBrand: false,
+      invalidDate: false,
+      invalidImage: false,
+      invalidColor: false,
+      
     };
   },
   methods: {
+    submitForm(){
+      this.invalidName = this.name === "" ? true : false;
+      this.invalidPrice = this.price === "" ? true : false;
+      this.invalidDes = this.des === "" ? true : false;
+      this.invalidBrand = this.brand === "" ? true : false;
+      this.invalidDate = this.date === "" ? true : false;
+      this.invalidImage = this.image === "" ? true : false;
+      this.invalidColor = this.selectedColor === [] ? true : false;
+
+      console.log(`name: ${this.name}`)
+      console.log(`invalid name: ${this.invalidName}`)
+      console.log(`price: ${this.price}`)
+      console.log(`invalid price: ${this.invalidPrice}`)
+      console.log(`des: ${this.des}`)
+      console.log(`invalid des: ${this.invalidDes}`)
+      console.log(`brand: ${this.brand}`)
+      console.log(`invalid brand: ${this.invalidBrand}`)
+      console.log(`date: ${this.date}`)
+      console.log(`invalid date: ${this.invalidDate}`)
+      console.log(`image: ${this.image}`)
+      console.log(`invalid image: ${this.invalidImage}`)
+      console.log(`color: ${this.selectedColor}`)
+      console.log(`invalid color: ${this.invalidColor}`)
+
+      if(this.name !== "" && this.price !== "" && this.des !== "" && this.brand !== "" && this.date !== "" && this.image !== "" && this.color !== ""){
+        this.addProduct({
+          name: this.name,
+          price: this.price,
+          des: this.des,
+          brand: this.brand,
+          date: this.date,
+          image: this.image,
+          color: this.color
+        });
+      }
+    },
+    // async addProduct(newProduct){
+    //   try {
+    //     const res = await fetch(this.productUrl, {
+    //       method: "POST",
+    //       headers: {
+    //         "content-type": "application/json"
+    //       },
+    //       body: JSON.stringify({
+            
+    //       })
+    //     });
+    //     const data = await res.json();
+    //     this.result = [...this.result, data];
+    //     location.reload();
+    //   }catch (error) {
+    //     console.log(`Cannot add product!: ${error}`);
+    //   }
+    // },
     async fetchBrand() {
-      const res = await fetch("http://localhost:3000/brands");
+      const res = await fetch(this.brandUrl);
       const data = await res.json();
       return data;
     },
     async fetchColor() {
-      const res = await fetch("http://localhost:3000/colors");
+      const res = await fetch(this.colorUrl);
       const data = await res.json();
       return data;
     },
