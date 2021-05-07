@@ -75,7 +75,7 @@
             v-model="color"
             id="color"
             name="color"
-            :value="c.colorid"
+            :value="c"
             class=""
           />&nbsp;
           <div
@@ -167,11 +167,11 @@ export default {
           date: this.date,
           image: this.image.name,
         });
-        // this.addProductColor(this.color)
+        this.addProductColor(this.color)
       }
     },
     async addProduct(newProduct) {
-      console.log("Add Ja!!!!!!!");
+
       let formData = new FormData();
       var fullPath = document.getElementById("image").value;
       if (fullPath) {
@@ -194,7 +194,7 @@ export default {
       };
 
       let productJson = JSON.stringify(pro);
-      console.log(productJson);
+
       fetch(`${this.addProducts}`, {
         method: "POST",
         headers: {
@@ -203,23 +203,16 @@ export default {
         body: productJson,
       });
 
-      console.log(this.image);
-      console.log(this.image.name);
       formData.append("file", this.image,this.image.name);
 
       fetch(`${this.UploadImage}`, {
         method: "POST",
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
         body: formData,
       });
     },
     async addProductColor(color) {
-      /* Error Cannot Add */
-      console.log("Product Color");
-      let co = { color_colorid: color };
-      let productColorJson = JSON.stringify(co);
+
+      let productColorJson = JSON.stringify(color);
 
       fetch(`${this.addProductColors}`, {
         method: "POST",
