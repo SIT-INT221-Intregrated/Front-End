@@ -2,10 +2,10 @@ version: "3"
 services:
     frontend:
         build: 
-        context: .
+         context: .
         image: frontend
-    networks:
-        - intregrated-network
+        networks:
+              - intregrated-network
 networks:
     intregrated-network:
        external: true
