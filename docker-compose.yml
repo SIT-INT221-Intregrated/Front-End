@@ -6,4 +6,3 @@ services:
         image: frontend
 networks:
       driver: bridge
-          name: bridge
