@@ -4,9 +4,6 @@ services:
         build: 
          context: .
         image: frontend
-       networks:
-             - allnetwork
-     
 networks:
     default:
        external:
