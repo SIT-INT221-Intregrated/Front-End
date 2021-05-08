@@ -1,7 +1,7 @@
 <template>
   <div class="product mx-40 my-20">
     <div class="text-3xl mb-8">Product</div>
-    <base-card :products="products" @remove-product="removeProduct"></base-card>
+    <base-card :products="products" @remove-product="removeProduct" @edit-product="editProduct"></base-card>
   </div>
 </template>
 
@@ -10,6 +10,9 @@ import BaseCard from "../components/BaseCard.vue";
 export default {
   components: {
     BaseCard,
+  },
+  props: {
+    // edit
   },
   data() {
     return {
@@ -32,6 +35,10 @@ export default {
       res.status === 200
         ? (this.products = this.products.filter((p) => p.productcode !== id))
         : alert("Error to Delete");
+    },
+    async editProduct(object) {
+      console.log("Product:" + object)
+      this.$emit("edit", object)
     },
   },
   async created() {

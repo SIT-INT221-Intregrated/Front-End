@@ -17,7 +17,7 @@
       </div>
     </div>
   </div>
-  <router-view />
+  <router-view  @edit="editProduct" :prod="product"/>
 </template>
 
 <style>
@@ -29,5 +29,16 @@
 </style>
 
 <script>
-export default {};
+export default {
+  data(){
+    return {
+      product: []
+    }
+  },
+  methods: {
+    editProduct(product) {
+      this.product = product
+    }
+  }
+};
 </script>
