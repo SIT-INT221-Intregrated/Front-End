@@ -1,11 +1,13 @@
 version: "3"
 services:
     frontend:
-        build: .
+        build: 
+         context: .
         image: frontend
-
-  networks:
+       networks:
+             - allnetwork
+     
+networks:
     default:
-      external:
-            name: intregrated-network
-
+       external:
+          name: allnetwork
