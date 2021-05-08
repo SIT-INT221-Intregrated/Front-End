@@ -4,8 +4,11 @@ services:
         build: 
          context: .
         image: frontend
+        ports: 
+            - "8080:80"
         networks:
-              - intregrated-network
+            - intregrated-network
 networks:
     intregrated-network:
        external: true
+
