@@ -5,8 +5,7 @@ services:
         context: .
         image: frontend
         networks:
-              - intregrated-network
+            - intregrated-network
 networks:
     intregrated-network:
        external: true
-          
