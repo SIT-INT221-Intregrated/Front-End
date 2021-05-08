@@ -2,6 +2,7 @@ version: "3"
 services:
     frontend:
         build: 
+        context: .
         image: frontend
         networks:
               - intregrated-network
