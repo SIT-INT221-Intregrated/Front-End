@@ -4,7 +4,9 @@ services:
         build: 
          context: .
         image: frontend
+        networks:
+              - intregrated-network
 networks:
-    default:
-       external:
-          name: allnetwork
+    intregrated-network:
+       external: true
+          
