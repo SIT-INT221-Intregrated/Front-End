@@ -6,5 +6,6 @@ services:
         image: frontend
 networks:
     default:
+      driver: bridge
        external:
-          name: allnetwork
+          name: bridge
