@@ -64,20 +64,20 @@
 
       <label for="color" class="leading-7 text-sm">Color: </label>
       <div class="grid grid-cols-3">
-        <div
+        <div 
           v-for="c in colors"
           :key="c.colorid"
           :value="c.hexcode"
           class="flex"
         >
           <input
+            id="xx"
             type="checkbox"
             v-model="color"
-            id="color"
             name="color"
             :value="c"
-            class=""
-          />&nbsp;
+          />
+          &nbsp;
           <div
             class="select-none border-black border-2 w-5 h-5 rounded-full"
             :style="{ 'background-color': c.hexcode }"
@@ -109,7 +109,6 @@
 
 <script>
 import ClickButton from "../components/ClickButton.vue";
-// import axios from 'axios';
 export default {
   components: {
     ClickButton,
@@ -119,12 +118,12 @@ export default {
   ],
   data() {
     return {
-      brandUrl: "http://172.18.0.2/brands",
-      colorUrl: "http://172.18.0.2/colors",
-      productUrl: "http://172.18.0.2/products",
-      updateProduct: "http://172.18.0.2/updateProduct",
-      updateImage: "http://172.18.0.2/updateimage",
-      updateProductColor: "http://172.18.0.2/updateColor",
+      brandUrl: "http://localhost:3000/brands",
+      colorUrl: "http://localhost:3000/colors",
+      productUrl: "http://localhost:3000/products",
+      updateProduct: "http://localhost:3000/updateProduct",
+      updateImage: "http://localhost:3000/updateimage",
+      updateProductColor: "http://localhost:3000/updateColor",
       brands: [],
       colors: [],
       code: this.prod.productcode,
@@ -139,10 +138,16 @@ export default {
   },
   methods: {
     addCheckedAttr(){
+      console.log(this.colors)
+      console.log(this.prod.productcolors)
       for (let i = 0; i < this.colors.length; i++) {
         for (let j = 0; j < this.prod.productcolors.length; j++) {
-          if (this.colors[i] === this.prod.productcolors[j]) {
-            document.getElementById('color').setAttribute("checked")
+          if (this.colors[i].colorid == this.prod.productcolors[j].colorid) {
+            console.log(this.colors[i].colorid)
+            console.log(this.prod.productcolors[j].colorid)
+            const x = document.getElementById("xx")
+            console.log(x)
+            x.setAttribute("checked");
             }
         }
       }
@@ -246,6 +251,8 @@ export default {
   async created() {
     this.brands = await this.fetchBrand();
     this.colors = await this.fetchColor();
+    this.addCheckedAttr()
+    
   },
 };
 </script>
