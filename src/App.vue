@@ -2,13 +2,10 @@
   <div id="nav" class="grid grid-cols-2 md:shadow-lg select-none">
     <div class="flex flex-row">
       <div class="w-20 bg-gray-300 text-center py-2">
-        <router-link to="/">Home</router-link>
+        <router-link to="/">Product</router-link>
       </div>
       <div class="w-20 bg-gray-200 text-center py-2">
         <router-link to="/team">Team</router-link>
-      </div>
-      <div class="w-24 bg-gray-100 text-center py-2">
-        <router-link to="/product">Product</router-link>
       </div>
     </div>
     <div class="place-self-end">
