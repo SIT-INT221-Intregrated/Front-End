@@ -2,12 +2,12 @@
   <div
     v-for="product in products"
     :key="product.productcode"
-    class="flex gap-4"
+    class="grid grid-cols-4 gap-4"
   >
     <div>
-      <img :src="`http://localhost:3000/Files/${product.images}`" class="w-60 h-60 object-cover" />
+      <img :src="`http://localhost:3000/Files/${product.images}`" class="w-80" />
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col col-span-3">
       <div class="text-xl">{{ product.productname }}</div>
       <div v-for="brand in product" :key="brand.brandid">
         <div class="text-gray-300 text-sm">{{ brand.brandname }}</div>

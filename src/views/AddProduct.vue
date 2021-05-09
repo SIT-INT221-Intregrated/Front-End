@@ -210,7 +210,7 @@ export default {
         body: formData,
       });
 
-      this.$router.push("/product");
+      this.$router.push("/");
     },
     async addProductColor(color) {
 
