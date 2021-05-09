@@ -5,14 +5,14 @@
       <img src="../assets/mew.png" class="rounded-full my-2 w-72 mx-auto">
       <div class="bg-orange text-white rounded-xl w-max mx-auto py-1 px-2">62130500056</div>
       <p>PIYATHIDA THANEEWAN</p>
-      <p class="text-reds text-sm">RESPONSIBILITY: DATABASE & DEVOPS</p>
+      <p class="text-reds text-sm">RESPONSIBILITY: BACK-END & DATABASE</p>
     </div>
     <div class="text-center mx-auto">
       <img src="../assets/sitkmutt.png" class="mx-auto w-72">
       <img src="../assets/sk.png" class="rounded-full my-2 w-72 mx-auto">
       <div class="bg-orange text-white rounded-xl w-max mx-auto py-1 px-2">62130500060</div>
       <p>PONGPICHET TANTHANAWIKRAI</p>
-      <p class="text-reds text-sm">RESPONSIBILITY: FRONT-END & BACK-END</p>
+      <p class="text-reds text-sm">RESPONSIBILITY: FRONT-END & DEVOPS</p>
     </div>
     <div class="text-center mx-auto">
       <img src="../assets/sitkmutt.png" class="mx-auto w-72">
