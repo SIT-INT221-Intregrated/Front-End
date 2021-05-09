@@ -133,60 +133,80 @@ export default {
       brand: this.prod.brands_brandid,
       date: this.prod.saledate,
       image: this.prod.images,
-      color: this.prod.productcolors,
+      color: [],
     };
   },
   methods: {
-    addCheckedAttr(){
-      console.log(this.colors)
-      console.log(this.prod.productcolors)
-      for (let i = 0; i < this.colors.length; i++) {
-        for (let j = 0; j < this.prod.productcolors.length; j++) {
-          if (this.colors[i].colorid == this.prod.productcolors[j].colorid) {
-            console.log(this.colors[i].colorid)
-            console.log(this.prod.productcolors[j].colorid)
-            const x = document.getElementById("xx")
-            console.log(x)
-            x.setAttribute("checked");
-            }
-        }
-      }
-    },
+    // addCheckedAttr(){
+    //   console.log(this.colors)
+    //   console.log(this.prod.productcolors)
+    //   for (let i = 0; i < this.colors.length; i++) {
+    //     for (let j = 0; j < this.prod.productcolors.length; j++) {
+    //       if (this.colors[i].colorid == this.prod.productcolors[j].colorid) {
+    //         console.log(this.colors[i].colorid)
+    //         console.log(this.prod.productcolors[j].colorid)
+    //         const x = document.getElementById("xx")
+    //         console.log(x)
+    //         x.setAttribute("checked");
+    //         }
+    //     }
+    //   }
+    // },
     submitForm() {
-      if (
-        this.name !== "" &&
-        this.price !== "" &&
-        this.des !== "" &&
-        this.brand !== "" &&
-        this.date !== "" &&
-        this.image !== this.prod.images
-      ) {
-        this.editProduct({
+      if (this.image !== this.prod.images) 
+      {
+        this.editProduct2({
           code: this.code,
           name: this.name,
           price: this.price,
           des: this.des,
           brand: this.brand,
           date: this.date,
-          image: this.image,
+          image: this.image.name,
         });
+        this.editProductColors(this.color)
       } else {
-        this.editProduct({
+        this.editProduct1({
           code: this.code,
           name: this.name,
           price: this.price,
           des: this.des,
           brand: this.brand,
           date: this.date,
-          image: this.image.name
-        })
-      }
-      if (this.color !== this.prod.productcolors) {
+          image: this.image
+        });
         this.editProductColors(this.color)
       }
       
+      
+      
     },
-    async editProduct(oldProduct) {
+    async editProduct1(oldProduct) {
+      console.log("Edit Page:" + oldProduct)
+      let pro = {
+        productcode: oldProduct.code,
+        productname: oldProduct.name,
+        productdescription: oldProduct.des,
+        price: oldProduct.price,
+        saledate: oldProduct.date,
+        brands_brandid: oldProduct.brand,
+        images: oldProduct.image,
+      };
+      let productJson = JSON.stringify(pro);
+      
+
+      fetch(`${this.updateProduct}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: productJson,
+      });
+
+
+      this.$router.push("/");
+    },
+    async editProduct2(oldProduct) {
       console.log("Edit Page:" + oldProduct)
       let formData = new FormData();
       let pro = {
@@ -199,6 +219,7 @@ export default {
         images: oldProduct.image,
       };
       let productJson = JSON.stringify(pro);
+      console.log(productJson)
       formData.append("file", this.image,this.image.name);
 
       fetch(`${this.updateImage}/${this.code}`, {
@@ -250,9 +271,7 @@ export default {
   },
   async created() {
     this.brands = await this.fetchBrand();
-    this.colors = await this.fetchColor();
-    this.addCheckedAttr()
-    
+    this.colors = await this.fetchColor();    
   },
 };
 </script>

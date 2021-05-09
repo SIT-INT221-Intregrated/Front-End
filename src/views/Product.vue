@@ -36,7 +36,7 @@ export default {
       await fetch(`${this.deleteImage}/${product.images}`, {
         method: "DELETE",
       });
-      
+      location.reload();
     },
     async editProduct(object) {
       console.log("Product:" + object)
