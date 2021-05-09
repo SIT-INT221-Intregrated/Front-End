@@ -118,12 +118,12 @@ export default {
   ],
   data() {
     return {
-      brandUrl: "http://localhost:3000/brands",
-      colorUrl: "http://localhost:3000/colors",
-      productUrl: "http://localhost:3000/products",
-      updateProduct: "http://localhost:3000/updateProduct",
-      updateImage: "http://localhost:3000/updateimage",
-      updateProductColor: "http://localhost:3000/updateColor",
+      brandUrl: "http://104.215.191.94:3000/brands",
+      colorUrl: "http://104.215.191.94:3000/colors",
+      productUrl: "http://104.215.191.94:3000/products",
+      updateProduct: "http://104.215.191.94:3000/updateProduct",
+      updateImage: "http://104.215.191.94:3000/updateimage",
+      updateProductColor: "http://104.215.191.94:3000/updateColor",
       brands: [],
       colors: [],
       code: this.prod.productcode,
