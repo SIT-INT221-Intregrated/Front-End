@@ -5,7 +5,7 @@
     class="grid grid-cols-4 gap-4"
   >
     <div>
-      <img :src="`http://localhost:3000/Files/${product.images}`" class="w-80" />
+      <img :src="`http://104.215.191.94:3000/Files/${product.images}`" class="w-80" />
     </div>
     <div class="flex flex-col col-span-3">
       <div class="text-xl">{{ product.productname }}</div>
@@ -42,7 +42,7 @@
         <click-button
           class="ButtonDelete focus:outline-none bg-red-300 select-none"
           label="DELETE"
-          @click="removeProduct(product.productcode)"
+          @click="removeProduct(product)"
         ></click-button>
       </div>
     </div>
@@ -67,7 +67,7 @@ export default {
   ],
   data() {
     return {
-      url: "http://localhost:3000/products",
+      url: "http://104.215.191.94:3000/products",
     };
   },
   methods: {
@@ -75,9 +75,9 @@ export default {
       console.log("BaseCard-EditId: " + edit.productcode);
       this.$emit("edit-product", edit);
     },
-    async removeProduct(deleteId) {
-      console.log("BaseCard-DeleteId: " + deleteId);
-      this.$emit("remove-product", deleteId);
+    async removeProduct(deletes) {
+      console.log("BaseCard-DeleteId: " + deletes.productcode);
+      this.$emit("remove-product", deletes);
     },
   },
 };

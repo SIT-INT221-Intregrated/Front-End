@@ -119,12 +119,12 @@ export default {
   ],
   data() {
     return {
-      brandUrl: "http://localhost:3000/brands",
-      colorUrl: "http://localhost:3000/colors",
-      productUrl: "http://localhost:3000/products",
-      updateProduct: "http://localhost:3000/updateProduct",
-      updateImage: "http://localhost:3000/updateimage",
-      updateProductColor: "http://localhost:3000/updateColor",
+      brandUrl: "http://104.215.191.94:3000/brands",
+      colorUrl: "http://104.215.191.94:3000/colors",
+      productUrl: "http://104.215.191.94:3000/products",
+      updateProduct: "http://104.215.191.94:3000/updateProduct",
+      updateImage: "http://104.215.191.94:3000/updateimage",
+      updateProductColor: "http://104.215.191.94:3000/updateColor",
       brands: [],
       colors: [],
       code: this.prod.productcode,
@@ -138,6 +138,15 @@ export default {
     };
   },
   methods: {
+    addCheckedAttr(){
+      for (let i = 0; i < this.colors.length; i++) {
+        for (let j = 0; j < this.prod.productcolors.length; j++) {
+          if (this.colors[i] === this.prod.productcolors[j]) {
+            document.getElementById('color').setAttribute("checked")
+            }
+        }
+      }
+    },
     submitForm() {
       if (
         this.name !== "" &&
@@ -145,8 +154,7 @@ export default {
         this.des !== "" &&
         this.brand !== "" &&
         this.date !== "" &&
-        this.image !== null &&
-        this.color.length !== 0
+        this.image !== this.prod.images
       ) {
         this.editProduct({
           code: this.code,
@@ -157,8 +165,21 @@ export default {
           date: this.date,
           image: this.image,
         });
-        this.editProductColor(this.color)
+      } else {
+        this.editProduct({
+          code: this.code,
+          name: this.name,
+          price: this.price,
+          des: this.des,
+          brand: this.brand,
+          date: this.date,
+          image: this.image.name
+        })
       }
+      if (this.color !== this.prod.productcolors) {
+        this.editProductColors(this.color)
+      }
+      
     },
     async editProduct(oldProduct) {
       console.log("Edit Page:" + oldProduct)
@@ -173,7 +194,12 @@ export default {
         images: oldProduct.image,
       };
       let productJson = JSON.stringify(pro);
+      formData.append("file", this.image,this.image.name);
 
+      fetch(`${this.updateImage}/${this.code}`, {
+        method: "PUT",
+        body: formData,
+      });
       fetch(`${this.updateProduct}`, {
         method: "PUT",
         headers: {
@@ -183,19 +209,19 @@ export default {
       });
 
 
-      formData.append("file", this.image,this.image.name);
-
-      fetch(`${this.updateImage}/${this.code}`, {
-        method: "PUT",
-        body: formData,
-      });
-
-      
-      this.$router.push("/product");
+      this.$router.push("/");
+    },
+    uploadImage: function (event) {
+      var input = event.target;
+      if (input.files) {
+        var reader = new FileReader();
+        this.image = input.files[0];
+        reader.readAsDataURL(input.files[0]);
+      }
     },
     async editProductColors(color){
       let productColorJson = JSON.stringify(color);
-
+      console.log(productColorJson)
       fetch(`${this.updateProductColor}/${this.code}`, {
         method: "PUT",
         headers: {
@@ -204,7 +230,7 @@ export default {
         body: productColorJson,
       });
     },
-
+    
 
     async fetchBrand() {
       const res = await fetch(this.brandUrl);

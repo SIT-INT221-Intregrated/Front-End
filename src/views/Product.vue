@@ -16,25 +16,27 @@ export default {
   },
   data() {
     return {
-      url: "http://localhost:3000/products",
+      deleteProduct: "http://104.215.191.94:3000/products",
+      deleteImage: "http://104.215.191.94:3000//deleteFile",
       products: [],
       have: false,
     };
   },
   methods: {
     async fetchProduct() {
-      const res = await fetch("http://localhost:3000/products");
+      const res = await fetch("http://104.215.191.94:3000/products");
       const data = await res.json();
       return data;
     },
-    async removeProduct(id) {
-      console.log("Product: "+id);
-      const res = await fetch(`${this.url}/${id}`, {
+    async removeProduct(product) {
+      console.log("Product: "+ product);
+      await fetch(`${this.deleteProduct}/${product.productcode}`, {
         method: "DELETE",
       });
-      res.status === 200
-        ? (this.products = this.products.filter((p) => p.productcode !== id))
-        : alert("Error to Delete");
+      await fetch(`${this.deleteImage}/${product.images}`, {
+        method: "DELETE",
+      });
+      
     },
     async editProduct(object) {
       console.log("Product:" + object)
