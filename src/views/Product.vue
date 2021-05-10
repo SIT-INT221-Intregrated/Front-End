@@ -1,6 +1,6 @@
 <template>
-  <div class="product mx-40 my-20">
-    <div class="text-3xl mb-8">Product</div>
+  <div class="product xl:mx-32 xl:my-20 md:mx-14 md:my-5 mx-8 my-5">
+    <div class="xl:text-3xl xl:mb-8 md:text-2xl md:mb-6">Product</div>
     <base-card :products="products" @remove-product="removeProduct" @edit-product="editProduct"></base-card>
   </div>
 </template>
