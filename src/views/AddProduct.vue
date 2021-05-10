@@ -11,6 +11,7 @@
         placeholder=""
         class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
       />
+      <div v-if="this.invalidName" class="text-red-600 font-normal text-sm">Please enter product name !!</div>
 
       <label for="price" class="leading-7 text-sm">Price</label>
       <input
@@ -21,6 +22,7 @@
         placeholder="฿"
         class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
       />
+      <div v-if="this.invalidPrice" class="text-red-600 font-normal text-sm">Please enter price !!</div>
 
       <label for="description" class="leading-7 text-sm">Description</label>
       <textarea
@@ -31,6 +33,7 @@
         placeholder="..."
         class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out resize-none"
       />
+      <div v-if="this.invalidDes" class="text-red-600 font-normal text-sm">Please enter product description !!</div>
 
       <label for="date" class="leading-7 text-sm">Update Date: </label>
       <input
@@ -41,8 +44,9 @@
         placeholder=""
         class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out max-w-max"
       />
-      <br />
-      <label for="brand" class="leading-7 text-sm">Brand: </label>
+      <div v-if="this.invalidDate" class="text-red-600 font-normal text-sm">Please enter update date !!</div>
+
+      <div><label for="brand" class="leading-7 text-sm">Brand: </label></div>
       <div class="grid grid-cols-4">
         <div
           v-for="b in brands"
@@ -61,6 +65,7 @@
           {{ b.brandname }}
         </div>
       </div>
+      <div v-if="this.invalidBrand" class="text-red-600 font-normal text-sm">Please select product brand !!</div>
 
       <label for="color" class="leading-7 text-sm">Color: </label>
       <div class="grid grid-cols-3">
@@ -85,6 +90,7 @@
           &nbsp;{{ c.colorname }}
         </div>
       </div>
+      <div v-if="this.invalidColor" class="text-red-600 font-normal text-sm">Please choose product color !!</div>
 
       <label for="image" class="leading-7 text-sm">Image: </label>
       <input
@@ -96,7 +102,8 @@
         @change="uploadImage"
         multiple
       />
-      <br />
+      <div v-if="this.invalidImage" class="text-red-600 font-normal text-sm">Please choose product image !!</div>
+
       <div class="flex justify-end">
         <click-button
           class="ButtonSubmit focus:outline-none bg-yellow-500 rounded-full p-1.5"
@@ -143,7 +150,7 @@ export default {
   methods: {
     submitForm() {
       this.invalidName = this.name === "" ? true : false;
-      this.invalidPrice = this.price === 0 ? true : false;
+      this.invalidPrice = this.price === "" ? true : false;
       this.invalidDes = this.des === "" ? true : false;
       this.invalidBrand = this.brand === "" ? true : false;
       this.invalidDate = this.date === "" ? true : false;
