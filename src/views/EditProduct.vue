@@ -1,5 +1,5 @@
 <template>
-  <div class="add max-w-lg mx-auto py-4">
+  <div class="xl:max-w-lg md:mx-auto max-w-sm mx-4 py-4">
     <h1>Edit Product</h1>
     <form @submit.prevent="submitForm">
       <label for="name" class="leading-7 text-sm">Product Name</label>
@@ -47,12 +47,12 @@
       <div v-if="this.invalidDate" class="text-red-600 font-normal text-sm">Please enter update date !!</div>
 
       <div><label for="brand" class="leading-7 text-sm">Brand: </label></div>
-      <div class="grid grid-cols-4">
+      <div class="md:grid md:grid-cols-4 inline-flex gap-1">
         <div
           v-for="b in brands"
           :key="b.brandid"
           :value="b.brandid"
-          class="flex"
+          class="flex text-xs md:text-sm"
         >
           <input
             type="radio"
@@ -73,7 +73,7 @@
           v-for="c in colors"
           :key="c.colorid"
           :value="c.hexcode"
-          class="flex"
+          class="flex md:text-sm text-xs"
         >
           <input
             id="xx"
@@ -84,7 +84,7 @@
           />
           &nbsp;
           <div
-            class="select-none border-black border-2 w-5 h-5 rounded-full"
+            class="select-none border-black border-2 xl:w-5 xl:h-5 md:w-4 md:h-4 w-3 h-3 rounded-full"
             :style="{ 'background-color': c.hexcode }"
           ></div>
           &nbsp;{{ c.colorname }}
