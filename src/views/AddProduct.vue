@@ -123,12 +123,12 @@ export default {
   },
   data() {
     return {
-      brandUrl: "http://104.215.191.94:3000/brands",
-      colorUrl: "http://104.215.191.94:3000/colors",
-      productUrl: "http://104.215.191.94:3000/products",
-      addProducts: "http://104.215.191.94:3000/addProducts",
-      UploadImage: "http://104.215.191.94:3000/uploadImage",
-      addProductColors: "http://104.215.191.94:3000/addProductColors",
+      brandUrl: "http://52.237.118.146:3000/brands",
+      colorUrl: "http://52.237.118.146:3000/colors",
+      productUrl: "http://52.237.118.146:3000/products",
+      addProducts: "http://52.237.118.146:3000/addProducts",
+      UploadImage: "http://52.237.118.146:3000/uploadImage",
+      addProductColors: "http://52.237.118.146:3000/addProductColors",
       brands: [],
       colors: [],
       name: "",
