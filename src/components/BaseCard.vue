@@ -5,7 +5,7 @@
     class="grid grid-cols-4 gap-4"
   >
     <div>
-      <img :src="`http://172.18.0.4:3000/Files/${product.images}`" class="w-80" />
+      <img :src="`http://104.215.191.94:3000/Files/${product.images}`" class="w-80" />
     </div>
     <div class="flex flex-col col-span-3">
       <div class="text-xl">{{ product.productname }}</div>
@@ -67,7 +67,7 @@ export default {
   ],
   data() {
     return {
-      url: "http://172.18.0.4:3000/products",
+      url: "http://104.215.191.94:3000/products",
     };
   },
   methods: {

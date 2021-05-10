@@ -16,15 +16,15 @@ export default {
   },
   data() {
     return {
-      deleteProduct: "http://172.18.0.4:3000/products",
-      deleteImage: "http://172.18.0.4:3000/deleteFile",
+      deleteProduct: "http://104.215.191.94:3000/products",
+      deleteImage: "http://104.215.191.94:3000/deleteFile",
       products: [],
       have: false,
     };
   },
   methods: {
     async fetchProduct() {
-      const res = await fetch("http://172.18.0.4:3000/products");
+      const res = await fetch("http://104.215.191.94:3000/products");
       const data = await res.json();
       return data;
     },
